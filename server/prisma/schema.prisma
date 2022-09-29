@@ -6,21 +6,6 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
-}
-
-model User {
-  id  Int @id @default(autoincrement())
-  nome String
-  pts Int
-  GM Int
-  GC Int
-  SG Int
-  PJ Int
-  Vitorias Int
-  Derrotas Int
-  Empates Int 
-
-  @@map("user")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
