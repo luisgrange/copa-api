@@ -1,13 +1,12 @@
 FROM node:alpine
-RUN mkdir -p /app
+
 WORKDIR /app
-ADD . /app
+COPY package*.json ./
 
-RUN npm install -g -s --no-progress yarn && \
-    yarn && \
-    yarn run build && \
-    yarn cache clean
+RUN yarn 
 
-CMD [ "npm", "start" ]
+COPY . .
 
 EXPOSE 3001
+
+CMD [ "yarn", "dev" ]
