@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {client} from '../database/primaClient';
+import {client} from '../database/prismaClient';
 
 
 export class SelecaoController{
