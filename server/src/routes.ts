@@ -10,21 +10,8 @@ const createSelecao = new SelecaoController();
 const grupos = new GrupoController();
 
 router.post('/api/v1/selecao-CADASTRO', createSelecao.handleSelecoes);  // ROTA PARA CADASTRO DE SELEÇÕES
-
 router.get('/api/v1/selecoes',createSelecao.handleGetSelecoes);         // ROTA PARA VISUALIZAÇÃO DAS SELEÇÕES
-
 router.get('/api/v1/selecao/id/:id',createSelecao.handleGetSelecao);    // ROTA PARA VISUALIZAÇÃO DA SELEÇÃO ÚNICA
 
 
-
-
-router.get('/api/v1/grupos', grupos.handleSetGrupos);
-
-<<<<<<< Updated upstream
-=======
-// ROTA PARA VISUALIZAÇÃO DAS SELEÇÕES
-router.get('/api/v1/selecoes',createSelecao.handleGetSelecoes);
-
-// ROTA PARA VISUALIZAÇÃO DA SELEÇÃO ÚNICA
-router.get('/api/v1/selecao:id',createSelecao.handleGetSelecao);
->>>>>>> Stashed changes
+router.get('/api/v1/grupos', grupos.handleGrupos);

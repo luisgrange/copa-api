@@ -21,17 +21,16 @@ model Selecoes {
   gp     Int
   gc     Int
   sg     Int
-
-  grupos Grupos[]
+  fk_grupo Grupos @relation( fields: [fk_id], references: [id])
+  fk_id Int
 
   @@map("selecoes")
 }
 
 model Grupos {
   id Int  @id @default(autoincrement())
-  FkSelecoes Selecoes? @relation( fields: [fk_id], references: [id])
-  fk_id Int
-
+  nome String
+  selecoes Selecoes[]
   
   @@map("grupos")
-}
+} 
