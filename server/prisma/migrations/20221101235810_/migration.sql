@@ -1,0 +1,6 @@
+-- CreateTable
+CREATE TABLE "grupos" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "fk_id" INTEGER NOT NULL,
+    CONSTRAINT "grupos_fk_id_fkey" FOREIGN KEY ("fk_id") REFERENCES "selecoes" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
