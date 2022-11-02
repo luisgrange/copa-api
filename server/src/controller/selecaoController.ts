@@ -38,12 +38,24 @@ export class SelecaoController{
     public async handleGetSelecoes (req: Request, res: Response){
         const selecoes = await client.selecoes.findMany();
 
+<<<<<<< Updated upstream
         
         return res.status(200).json({selecoes});
     }
 
     public async handleGetSelecao (req: Request, res: Response){
         const id = req.params.id;
+=======
+        // selecoes.forEach((selecao)=>{
+        //     console.log (selecao);
+        // })
+
+        return res.json(...selecoes);
+    }
+
+    public async handleGetSelecao (req: Request, res: Response){
+        const id = req.query.id;
+>>>>>>> Stashed changes
         const selecao = await client.selecoes.findUnique(
             {
                 where:{
@@ -52,9 +64,19 @@ export class SelecaoController{
             }
         );
 
+<<<<<<< Updated upstream
+=======
+        // selecoes.forEach((selecao)=>{
+        //     console.log (selecao);
+        // })
+
+>>>>>>> Stashed changes
         return res.json(selecao);
     }
       
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }

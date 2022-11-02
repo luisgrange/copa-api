@@ -20,3 +20,11 @@ router.get('/api/v1/selecao/id/:id',createSelecao.handleGetSelecao);    // ROTA 
 
 router.get('/api/v1/grupos', grupos.handleSetGrupos);
 
+<<<<<<< Updated upstream
+=======
+// ROTA PARA VISUALIZAÇÃO DAS SELEÇÕES
+router.get('/api/v1/selecoes',createSelecao.handleGetSelecoes);
+
+// ROTA PARA VISUALIZAÇÃO DA SELEÇÃO ÚNICA
+router.get('/api/v1/selecao:id',createSelecao.handleGetSelecao);
+>>>>>>> Stashed changes
