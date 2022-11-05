@@ -3,9 +3,10 @@ import {client} from '../database/prismaClient';
 
 
 export class SelecaoController{
+
+    // CRIA UMA SELEÇÃO
     public async handleSelecoes (req: Request, res: Response){
         const  {
-            id,
             escudo,
             nome,
             pts,  
@@ -14,12 +15,12 @@ export class SelecaoController{
             der,
             gp,
             gc,
-            sg     
+            sg,
+            gruposId
         } = req.body;
 
         const selecao = await client.selecoes.create({
-            data: {
-                id,
+            data:{
                 escudo,
                 nome,
                 pts,  
@@ -28,55 +29,63 @@ export class SelecaoController{
                 der,
                 gp,
                 gc,
-                sg  
+                sg,
+                gruposId
             }
         });
-
         return res.json(selecao);
     }
 
+    // MOSTRA TODAS SELEÇÕES
     public async handleGetSelecoes (req: Request, res: Response){
         const selecoes = await client.selecoes.findMany();
-
-<<<<<<< Updated upstream
-        
         return res.status(200).json({selecoes});
     }
 
+    // MOSTRA UMA ÚNICA SELEÇÃO
     public async handleGetSelecao (req: Request, res: Response){
-        const id = req.params.id;
-=======
-        // selecoes.forEach((selecao)=>{
-        //     console.log (selecao);
-        // })
-
-        return res.json(...selecoes);
-    }
-
-    public async handleGetSelecao (req: Request, res: Response){
-        const id = req.query.id;
->>>>>>> Stashed changes
+        const {id} = req.params;
         const selecao = await client.selecoes.findUnique(
             {
                 where:{
-                    id:Number(id) 
+                    id: Number(id)
                 }
             }
         );
 
-<<<<<<< Updated upstream
-=======
-        // selecoes.forEach((selecao)=>{
-        //     console.log (selecao);
-        // })
-
->>>>>>> Stashed changes
-        return res.json(selecao);
+       res.status(200).json(selecao);
     }
-      
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
+    // UPDATE EM UMA ÚNICA SELEÇÃO
+    public async handleUpdateSelecao(req: Request, res: Response){
+        const id = req.query.id;
+        const { pts, vit, emp, der, gp, gc, sg } = req.body;
+
+        const selecaoUpdate = await client.selecoes.update({
+            where:{
+                id:Number(id)
+            },
+            data:{
+                pts, 
+                vit, 
+                emp, 
+                der, 
+                gp, 
+                gc, 
+                sg
+            }
+        });
+
+        res.status(200).json(selecaoUpdate);
+    }
+
+    public async handleShowByGroup(req: Request, res:Response){
+        const {id} = req.params;
+
+        const grupo = await client.selecoes.findMany({
+            where:{gruposId: Number(id)}
+        })
+    }
+
 }

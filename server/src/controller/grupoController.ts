@@ -5,20 +5,32 @@ import {client} from '../database/prismaClient';
 export class GrupoController{
 
     public async handleGrupos(req: Request, res: Response){
-        const { nome, fk_id_selecao} = req.body;
+        const { nome } = req.body;
 
         const grupos  = await client.grupos.create({
             data:{
-                nome,
-                fk_id_selecao
-
+                nome
             }
         })
 
         res.status(200).json(grupos)
     }
 
-    public async handleSetGrupos(req: Request, res: Response){
+    public async handleMostraGrupos(req: Request, res: Response){
+
+        const grupos  = await client.grupos.findMany()
+
+        res.status(200).json({grupos})
+    }
+
+
+    public async handleShowGrupos(req: Request, res: Response){
+        const {id} = req.params;
+
+        const grupo = await client.selecoes.findMany({
+            where:{gruposId: Number(id)}
+        })
+        res.json(grupo)
 
 /*         const selecoes = [
             {id: 1,nome:"grupo 1", selecoes_ids:[1,2,3,4]},

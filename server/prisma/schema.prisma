@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,27 +8,46 @@ datasource db {
 }
 
 model Selecoes {
-  id     Int    @id @default(autoincrement())
-  escudo String
-  nome   String
-  pts    Int
-  vit    Int
-  emp    Int
-  der    Int
-  gp     Int
-  gc     Int
-  sg     Int
-
-  grupos Grupos[]
+  id       Int     @id @default(autoincrement())
+  escudo   String
+  nome     String
+  pts      Int
+  vit      Int
+  emp      Int
+  der      Int
+  gp       Int
+  gc       Int
+  sg       Int
+  gruposId Int?
+  Grupos   Grupos? @relation(fields: [gruposId], references: [id])
 
   @@map("selecoes")
 }
 
 model Grupos {
-  id Int  @id @default(autoincrement())
-  FkSelecoes Selecoes? @relation( fields: [fk_id], references: [id])
-  fk_id Int
+  id       Int        @id @default(autoincrement())
+  nome     String
+  selecoes Selecoes[]
 
-  
   @@map("grupos")
+}
+
+model Jogos {
+  id_jogo    Int          @id @default(autoincrement())
+  fkId_sel1  Int
+  fkId_sel2  Int
+  gol1       Int
+  gol2       Int
+  vencedores Vencedores[] @relation("jogosTovencedores")
+
+  @@map("jogos")
+}
+
+model Vencedores {
+  id       Int    @id @default(autoincrement())
+  fk_id    Int
+  vencedor String
+  jogos    Jogos  @relation("jogosTovencedores", fields: [fk_id], references: [id_jogo])
+
+  @@map("vencedores")
 }
