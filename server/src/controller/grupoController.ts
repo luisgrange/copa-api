@@ -16,15 +16,21 @@ export class GrupoController{
         res.status(200).json(grupos)
     }
 
-    public async handleShowGrupos(req: Request, res: Response){
-        const grupoID = req.query.id;
-        const grupo = await client.selecoes.findMany({
-            where: {
-                fk_id: Number(grupoID)
-            }
-        })
+    public async handleMostraGrupos(req: Request, res: Response){
 
-        res.json({grupo})
+        const grupos  = await client.grupos.findMany()
+
+        res.status(200).json({grupos})
+    }
+
+
+    public async handleShowGrupos(req: Request, res: Response){
+        const {id} = req.params;
+
+        const grupo = await client.selecoes.findMany({
+            where:{gruposId: Number(id)}
+        })
+        res.json(grupo)
 
 /*         const selecoes = [
             {id: 1,nome:"grupo 1", selecoes_ids:[1,2,3,4]},

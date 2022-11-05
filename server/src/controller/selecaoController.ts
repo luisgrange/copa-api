@@ -7,7 +7,6 @@ export class SelecaoController{
     // CRIA UMA SELEÇÃO
     public async handleSelecoes (req: Request, res: Response){
         const  {
-            id,
             escudo,
             nome,
             pts,  
@@ -17,12 +16,11 @@ export class SelecaoController{
             gp,
             gc,
             sg,
-            fk_id    
+            gruposId
         } = req.body;
 
         const selecao = await client.selecoes.create({
-            data: {
-                id,
+            data:{
                 escudo,
                 nome,
                 pts,  
@@ -32,7 +30,7 @@ export class SelecaoController{
                 gp,
                 gc,
                 sg,
-                fk_id
+                gruposId
             }
         });
         return res.json(selecao);
@@ -46,21 +44,21 @@ export class SelecaoController{
 
     // MOSTRA UMA ÚNICA SELEÇÃO
     public async handleGetSelecao (req: Request, res: Response){
-        const id = req.query.id;
+        const {id} = req.params;
         const selecao = await client.selecoes.findUnique(
             {
                 where:{
-                    id:Number(id) 
+                    id: Number(id)
                 }
             }
         );
 
-        return res.json(selecao);
+       res.status(200).json(selecao);
     }
 
 
     // UPDATE EM UMA ÚNICA SELEÇÃO
-    public async handleUpdateselecao(req: Request, res: Response){
+    public async handleUpdateSelecao(req: Request, res: Response){
         const id = req.query.id;
         const { pts, vit, emp, der, gp, gc, sg } = req.body;
 
@@ -80,6 +78,14 @@ export class SelecaoController{
         });
 
         res.status(200).json(selecaoUpdate);
+    }
+
+    public async handleShowByGroup(req: Request, res:Response){
+        const {id} = req.params;
+
+        const grupo = await client.selecoes.findMany({
+            where:{gruposId: Number(id)}
+        })
     }
 
 }
