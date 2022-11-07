@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { SelecaoController } from '../model/selecaoController/SelecaoController';
 import { GrupoController } from '../model/grupoController';
 import { jogosController } from '../model/jogosController';
 import { vencedorController } from '../model/vencedorController';
@@ -8,7 +7,6 @@ import { selecaoController } from '../model/selecaoController/SelecaoFactory';
 export const router = Router();
 
 
-const createSelecao = new SelecaoController();
 const grupos = new GrupoController();
 const jogos = new jogosController();
 const vencedor = new vencedorController();
