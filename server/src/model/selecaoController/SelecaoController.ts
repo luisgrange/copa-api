@@ -78,13 +78,4 @@ export class SelecaoController{
 
         res.status(200).json(selecaoUpdate);
     }
-
-    public async handleShowByGroup(req: Request, res:Response){
-        const {id} = req.params;
-
-        const grupo = await client.selecoes.findMany({
-            where:{gruposId: Number(id)}
-        })
-    }
-
 }
