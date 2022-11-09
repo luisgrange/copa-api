@@ -5,7 +5,6 @@ import { jogosController } from '../model/jogosController/JogosFactory';
 import { vencedorController} from '../model/vencedroController/VencedorFactory';
 import { selecaoController } from '../model/selecaoController/SelecaoFactory';
 
-
 export const router = Router();
 
 router.post('/api/v2/selecoes/cadastro', selecaoController().handleCreateSelecoes);  // ROTA PARA CADASTRO DE SELEÇÕES
