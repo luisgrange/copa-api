@@ -1,22 +1,11 @@
 import { Router } from 'express';
 
-
-
-
-
 import { grupoController } from '../model/grupoController/GrupoFactory';
 import { jogosController } from '../model/jogosController/JogosFactory';
 import { vencedorController} from '../model/vencedroController/VencedorFactory';
-import { SelecaoController } from '../model/selecaoController/SelecaoController';
 import { selecaoController } from '../model/selecaoController/SelecaoFactory';
 
-
-
 export const router = Router();
-
-
-
-
 
 router.post('/api/v2/selecoes/cadastro', selecaoController().handleCreateSelecoes);  // ROTA PARA CADASTRO DE SELEÇÕES
 router.get('/api/v2/selecoes', selecaoController().handleGetSelecoes);         // ROTA PARA VISUALIZAÇÃO DAS SELEÇÕES

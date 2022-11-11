@@ -1,1 +1,19 @@
-{}
+{
+    "openapi": "3.0.0",
+    "info": {
+        "titulo": "API da Copa",
+        "description": "Essa API tem por objetivo a manipulação e controle dos jogos da copa",
+        "termsOfService": "http://localhost:3001/terms",
+        "contact": {
+            "email": "luisfernando237grange@outlook.com",
+            "suport": "andre.elisei@outlook.com"
+        }, 
+        "version": "2.0.0"
+    },
+
+    "server": {
+        "url": "http://localhost:3001"
+    },
+
+    "path":{}
+}
