@@ -21,6 +21,17 @@ export class VencedorController{
             }
         })
 
+        const pts = selecao?.pts;
+
+        const selecaoUpdate = await client.selecoes.update({
+            where: {
+                id: Number(selecao?.id)
+            },
+            data: {
+                pts: Number(pts)+3
+            }
+        });
+
 
         res.status(200).json(vencedor);
     }
